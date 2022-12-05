@@ -13,7 +13,7 @@ namespace EgyszeruCsere
         static void Main(string[] args)
         {
             //int[] t = { 10, 2, 8, 3, 5, 6, 1, 7, 1 };
-            int[] t = new int[40000];
+            int[] t = new int[80000];
             Stopwatch stopper = new Stopwatch();
             Beolvas(t);
 

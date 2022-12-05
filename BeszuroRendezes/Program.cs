@@ -6,7 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace Buborek
+namespace BeszuroRendezes
 {
     class Program
     {
@@ -19,23 +19,22 @@ namespace Buborek
             Stopwatch stopper = new Stopwatch();
 
             stopper.Start();
-            for (int i = t.Length - 1; i >= 1; i--)
+            for (int i = 1; i <= t.Length - 1; i++)
             {
-                for (int ii = 0; ii <= i - 1; ii++)
+                int j = i - 1;
+                while ((j >= 0) && (t[j] > t[j + 1]))
                 {
-                    if (t[ii] > t[ii + 1])
-                    {
-                        int temp = t[ii];
-                        t[ii] = t[ii + 1];
-                        t[ii + 1] = temp;
-                    }
+                    int temp = t[j];
+                    t[j] = t[j + 1];
+                    t[j + 1] = temp;
+                    j = j - 1;
                 }
             }
             stopper.Stop();
 
             //foreach (var e in t)
             //{
-            //    Console.Write($"{e} ");
+            //    console.write($"{e} ");
             //}
             Console.WriteLine($"Eltelt {stopper.ElapsedMilliseconds}");
 

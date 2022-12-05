@@ -6,7 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace Buborek
+namespace BeszuroRendezes
 {
     class Program
     {
@@ -15,21 +15,20 @@ namespace Buborek
             //int[] t = { 10, 2, 8, 3, 5, 6, 1, 7, 1 };
             int[] t = new int[80000];
             Beolvas(t);
-            Console.WriteLine("Javított buborék rendezés");
+            Console.WriteLine("Javított beszúró rendezés");
             Stopwatch stopper = new Stopwatch();
 
             stopper.Start();
-            for (int i = t.Length - 1; i >= 1; i--)
+            for (int i = 1; i <= t.Length - 1; i++)
             {
-                for (int ii = 0; ii <= i - 1; ii++)
+                int j = i - 1;
+                int tmp = t[i];
+                while ((j >= 0) && (t[j] > tmp))
                 {
-                    if (t[ii] > t[ii + 1])
-                    {
-                        int temp = t[ii];
-                        t[ii] = t[ii + 1];
-                        t[ii + 1] = temp;
-                    }
+                    t[j + 1] = t[j];
+                    j = j - 1;
                 }
+                t[j + 1] = tmp;
             }
             stopper.Stop();
 
@@ -38,7 +37,7 @@ namespace Buborek
             //    Console.Write($"{e} ");
             //}
             Console.WriteLine($"Eltelt {stopper.ElapsedMilliseconds}");
-
+            
             Console.ReadKey();
         }
 

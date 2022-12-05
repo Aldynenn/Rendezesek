@@ -6,7 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace Buborek
+namespace JavitottBuborek
 {
     class Program
     {
@@ -19,19 +19,24 @@ namespace Buborek
             Stopwatch stopper = new Stopwatch();
 
             stopper.Start();
-            for (int i = t.Length - 1; i >= 1; i--)
+            int i = t.Length - 1;
+            while (i >= 1)
             {
-                for (int ii = 0; ii <= i - 1; ii++)
+                int cs = -1;
+                for (int j = 0; j <= i - 1; j++)
                 {
-                    if (t[ii] > t[ii + 1])
+                    if (t[j] > t[j + 1])
                     {
-                        int temp = t[ii];
-                        t[ii] = t[ii + 1];
-                        t[ii + 1] = temp;
+                        int temp = t[j];
+                        t[j] = t[j + 1];
+                        t[j + 1] = temp;
+                        cs = j;
                     }
                 }
+                i = cs;
             }
             stopper.Stop();
+
 
             //foreach (var e in t)
             //{
@@ -41,7 +46,6 @@ namespace Buborek
 
             Console.ReadKey();
         }
-
         private static void Beolvas(int[] t)
         {
             using (StreamReader sr = new StreamReader("adatok.txt"))
